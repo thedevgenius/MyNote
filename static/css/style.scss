@@ -55,7 +55,7 @@ img{
     @include center();
 }
 .container{
-    max-width: 1200px;
+    max-width: 1240px;
 }
 .btn{
     border-radius: 0;
@@ -99,7 +99,7 @@ img{
 }
 .logo{
     img{
-        max-width: 100px;
+        max-height: 130px;
     }
 }
 .reg-img{
@@ -129,8 +129,8 @@ img{
     }
     .note-info{
         padding: 5px 0;
-        border-bottom: 1px solid #f7f7f7;
-        border-top: 1px solid #f7f7f7;
+        border-bottom: 1px solid #d9d9d9;
+        border-top: 1px solid #d9d9d9;
         i{
             color: $green;
         }

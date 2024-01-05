@@ -42,7 +42,7 @@ img {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1240px;
 }
 
 .btn {
@@ -94,7 +94,7 @@ img {
 }
 
 .logo img {
-  max-width: 100px;
+  max-height: 130px;
 }
 
 .reg-img {
@@ -125,8 +125,8 @@ img {
 }
 .note-content .note-info {
   padding: 5px 0;
-  border-bottom: 1px solid #f7f7f7;
-  border-top: 1px solid #f7f7f7;
+  border-bottom: 1px solid #d9d9d9;
+  border-top: 1px solid #d9d9d9;
 }
 .note-content .note-info i {
   color: #0f4231;
