@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block 'title' %}{{ notebook.title }} | My Notes{% endblock 'title' %}
+{% block 'content' %}
+    <section>
+        <div class="container">
+            <h1 class="text-center mb-2">{{ notebook.title }}</h1>
+
+            <div class="row">
+                <div class="col-md-6">
+                    {% if pre_notes %}
+                        <h3>Prelims Note</h3>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Title</th>
+                                <th>Action</th>
+                            </tr>
+                            {% for pre_note in pre_notes %}
+                                <tr>
+                                    <td><i class="fa-sharp fa-light fa-notes"></i> <a href="{% url 'notes' slug=pre_note.notebook.slug sl=pre_note.slug %}">{{ pre_note.title }}</a></td>
+                                    <td><a href="{% url 'edit-note' slug=pre_note.slug %}"><i class="fa-sharp fa-solid fa-pencil"></i></a></td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    {% if main_notes %}
+                        <h3>Mains Note</h3>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Title</th>
+                                <th>Action</th>
+                            </tr>
+                            {% for pre_note in main_notes %}
+                                <tr>
+                                    <td><i class="fa-sharp fa-light fa-notes"></i> <a href="{% url 'notes' slug=pre_note.notebook.slug sl=pre_note.slug %}">{{ pre_note.title }}</a></td>
+                                    <td><a href="#"><i class="fa-sharp fa-solid fa-pencil"></i></a></td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock 'content' %}
+

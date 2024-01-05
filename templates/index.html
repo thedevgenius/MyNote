@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load custom_tags %}
+{% block 'title' %}Home | ByteCV{% endblock 'title' %}
+{% block 'content' %}
+    <section class="pad bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Note Books</h2>
+            <div class="row g-3 justify-content-center">
+                {% for notebook in notebooks %}
+                    <div class="col-md-3">
+                        <a href="{% url 'notebook' slug=notebook.slug %}" class="notebook"><i class="fa-sharp fa-solid fa-book"></i>{{ notebook.title }} <span>({{notebook.id|get_count}})</span></a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock 'content' %}
+

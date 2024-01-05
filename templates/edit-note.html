@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block 'title' %}{{ note.title }} | My Notes{% endblock 'title' %}
+{% block 'content' %}
+    <section>
+        <div class="container">
+            <form method="post">
+                {% csrf_token %}
+                <textarea name="note_content">{{ note.content }}</textarea>
+                <button type="submit" class="btn btn-success mt-3">SAVE</button>
+            </form>
+        </div>
+    </section>
+{% endblock 'content' %}
+
