@@ -1,11 +1,16 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
+from datetime import datetime
 # Create your views here.
 def home_page(request):
     notebooks = NoteBook.objects.all().order_by('title')
-
+    targets = Target.objects.filter(date__day=datetime.now().day, date__month=datetime.now().month, date__year=datetime.now().year, status=False)
+    backlogs = Target.objects.filter(status=False).exclude(date__day=datetime.now().day, date__month=datetime.now().month, date__year=datetime.now().year)
+    
     data = {
-        'notebooks' : notebooks
+        'notebooks' : notebooks,
+        'targets' : targets,
+        'backlogs' : backlogs
     }
     return render(request, 'index.html', data)
 
@@ -48,3 +53,9 @@ def edit_note(request, slug):
     }
     return render(request, 'edit-note.html', data)
 
+
+def target_finished(request, id):
+    target = Target.objects.get(id=id)
+    target.status = True
+    target.save()
+    return redirect('home')

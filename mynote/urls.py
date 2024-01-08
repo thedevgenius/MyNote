@@ -26,6 +26,7 @@ urlpatterns = [
     path('notebook/<str:slug>/', note_book_details, name='notebook'),
     path('notebook/<str:slug>/<str:sl>/', note_details, name='notes'),
     path('edit-note/<str:slug>/', edit_note, name='edit-note'),
+    path('tr-finished/<int:id>/', target_finished, name='tr-finished'),
 ]
 
 if settings.DEBUG:

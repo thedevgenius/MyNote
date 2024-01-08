@@ -2,6 +2,48 @@
 {% load custom_tags %}
 {% block 'title' %}Home | My Note{% endblock 'title' %}
 {% block 'content' %}
+    <section class="py-2 mt-2">
+        <div class="container">
+            <h1 class="text-center mb-4"><strong>Do or Die <br> You Have to Do it Rupam</strong></h1>
+            <div class="row">
+                <div class="col-md-6">
+                    {% if targets %}
+                        <table class="table table-info">
+                            <tr>
+                                <th>Topic</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                            {% for target in targets %}
+                                <tr>
+                                    <td>{{ target.title }}</td>
+                                    <td class="text-center"><a href="{% url 'tr-finished' id=target.id %}"><i class="fa-sharp fa-solid fa-shield-check"></i></a></td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% endif %}
+
+                </div>
+                <div class="col-md-6">
+                    {% if backlogs %}
+                        <table class="table table-danger">
+                            <tr>
+                                <th>Date</th>
+                                <th>Topic</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                            {% for backlog in backlogs %}
+                                <tr>
+                                    <td>{{ backlog.date|date:'m-d-y' }}</td>
+                                    <td>{{ backlog.title }}</td>
+                                    <td class="text-center"><a href="{% url 'tr-finished' id=backlog.id %}"><i class="fa-sharp fa-solid fa-shield-check"></i></a></td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="py-3 mt-3 bg-light">
         <div class="container">
             <h2 class="text-center mb-4">Note Books</h2>

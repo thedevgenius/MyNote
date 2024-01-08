@@ -37,3 +37,12 @@ class Note(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class Target(models.Model):
+    date = models.DateField()
+    title = models.CharField(max_length=255)
+    status = models.BooleanField()
+    
+    def __str__(self):
+        return f"{str(self.date)} - {self.title}"
