@@ -59,3 +59,12 @@ def target_finished(request, id):
     target.status = True
     target.save()
     return redirect('home')
+
+
+def payment_testing(request):
+    Target.objects.create(
+        date=datetime.now(),
+        title='My Target',
+        status=False
+    )
+    return render(request, 'pay.html')
