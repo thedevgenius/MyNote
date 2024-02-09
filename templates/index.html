@@ -2,20 +2,20 @@
 {% load custom_tags %}
 {% block 'title' %}Home | My Note{% endblock 'title' %}
 {% block 'content' %}
-    <section class="py-2 mt-2">
+    <section class="py-2 mt-2 bg-light">
         <div class="container">
-            <!-- <h1 class="text-center mb-4"><strong>Do or Die <br> You Have to Do it Rupam</strong></h1> -->
+            <!-- <h1 class="text-center"><strong>Do or Die <br> You Have to Do it Rupam</strong></h1> -->
             
         </div>
     </section>
 
     <section class="py-5">
         <div class="container">
-            <h2></h2>
+            <h2 class="text-center mb-3">Subjects</h2>
             <div class="row justify-content-center g-3">
                 {% for subject in subjects %}
                     <div class="col-md-3">
-                        <a href="{% url 'subject-details' subject.slug %}" class="notebook">{{ subject.title }}</a>
+                        <a href="{% url 'subject-details' subject.slug %}" class="notebook">{{ subject.title }} ({{ subject.id|get_count }})</a>
                     </div>
                 {% endfor %}
             </div>
