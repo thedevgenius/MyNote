@@ -23,11 +23,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_page, name='home'),
-    path('notebook/<str:slug>/', note_book_details, name='notebook'),
-    path('notebook/<str:slug>/<str:sl>/', note_details, name='notes'),
-    path('edit-note/<str:slug>/', edit_note, name='edit-note'),
-    path('tr-finished/<int:id>/', target_finished, name='tr-finished'),
-    path('pay/', payment_testing, name='pay'),
+    path('subject/<str:slug>/', subject_details, name='subject-details'),
+    path('chapter/<str:slug>/', chapter_details, name='chapter-details'),
 ]
 
 if settings.DEBUG:

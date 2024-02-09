@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block 'title' %}{{ subject.title }} | My Note{% endblock 'title' %}
+{% block 'content' %}
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-3">{{ subject.title }}</h2>
+            <div class="row justify-content-center g-3">
+                {% for chapter in chapters %}
+                    <div class="col-md-3">
+                        <a href="{% url 'chapter-details' chapter.slug %}" class="notebook">{{ chapter.title }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock 'content' %}
+

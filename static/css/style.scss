@@ -111,7 +111,7 @@ img{
     display: inline-block;
     width: 100%;
     padding: 10px 10px;
-    font-weight: 500;
+    font-weight: 600;
     box-shadow: 0 0 5px #b7b7b7;
     i{
         margin-right: 5px;
@@ -138,4 +138,13 @@ img{
             color: $black;
         }
     }
+}
+
+.accordion-button{
+    font-size: 18px;
+    font-weight: 500;
+    color: $black !important;
+    font-family: $montserat;
+    padding: 11px 17px;
+    background-color: #f4f8fd;
 }

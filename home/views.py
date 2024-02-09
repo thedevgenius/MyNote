@@ -3,68 +3,33 @@ from .models import *
 from datetime import datetime
 # Create your views here.
 def home_page(request):
-    notebooks = NoteBook.objects.all().order_by('title')
-    targets = Target.objects.filter(date__day=datetime.now().day, date__month=datetime.now().month, date__year=datetime.now().year, status=False)
-    backlogs = Target.objects.filter(status=False).exclude(date__day=datetime.now().day, date__month=datetime.now().month, date__year=datetime.now().year)
-    
+    subjects = Subject.objects.all().order_by('title')
+
     data = {
-        'notebooks' : notebooks,
-        'targets' : targets,
-        'backlogs' : backlogs
+        'subjects' : subjects
     }
     return render(request, 'index.html', data)
 
 
 
-def note_book_details(request, slug):
-    notebook = get_object_or_404(NoteBook, slug=slug)
-    pre_notes = Note.objects.filter(category='P', notebook_id=notebook.id)
-    main_notes = Note.objects.filter(category='M', notebook_id=notebook.id)
-
+def subject_details(request, slug):
+    subject = get_object_or_404(Subject, slug=slug)
+    chapters = Chapter.objects.filter(subject_id=subject.id)
 
     data = {
-        'notebook' : notebook,
-        'pre_notes' : pre_notes,
-        'main_notes' : main_notes
+        'subject' : subject,
+        'chapters' : chapters
     }
-    return render(request, 'notebook.html', data)
+    return render(request, 'subject-details.html', data)
 
-def note_details(request, sl, slug):
-    note = get_object_or_404(Note, slug=sl)
-    notebook = NoteBook.objects.get(slug=slug)
+def chapter_details(request, slug):
+    chapter = get_object_or_404(Chapter, slug=slug)
+    questions = Question.objects.filter(chapter_id=chapter.id)
+    subject = chapter.subject
 
     data = {
-        'note' : note
+        'chapter' : chapter,
+        'questions' : questions,
+        'subject' : subject
     }
-
-    return render(request, 'notes.html', data)
-
-def edit_note(request, slug):
-    note = get_object_or_404(Note, slug=slug)
-    if request.method == 'POST':
-        content = request.POST['note_content']
-        note.content = content
-        note.save()
-
-
-
-    data = {
-        'note' : note
-    }
-    return render(request, 'edit-note.html', data)
-
-
-def target_finished(request, id):
-    target = Target.objects.get(id=id)
-    target.status = True
-    target.save()
-    return redirect('home')
-
-
-def payment_testing(request):
-    Target.objects.create(
-        date=datetime.now(),
-        title='My Target',
-        status=False
-    )
-    return render(request, 'pay.html')
+    return render(request, 'chapter-details.html', data)
